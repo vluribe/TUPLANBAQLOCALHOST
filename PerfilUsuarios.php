@@ -86,7 +86,7 @@ include('conexiongen.php');
 
          if($resultado->num_rows >0){
               while($row = $resultado->fetch_assoc()){
-                    echo '../tuplanbaq/'.$row['foto'].'';
+                    echo $row["foto"];
             }
          }
          $resultado->close();
@@ -181,7 +181,7 @@ include('conexiongen.php');
                 //echo '<form action="lugares.php?usuario='.$usuario.'" method="post">';
                 echo '<table align="justify" width=100% cellspacing=2 cellpadding=0 id="data_table" border=4>';
 				echo '<tr>';
-				echo '<td width=60%><img src="../tuplanbaq/'.$row["foto"].'"/></td>';
+				echo '<td width=60%><img src="'.$row["foto"].'"/></td>';
                 echo '<td align="center"><h2><strong>'.$row["nombre"].' </strong></h2>  <br/>
                           '.$row["descripcion"].'
                           <br/> <br/>

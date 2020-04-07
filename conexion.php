@@ -1,11 +1,6 @@
 <?php
 	$repetido='';
-	$servername = "localhost";
-	$database = "visitar";
-	$username = "root";
-	// Create connection
-	$conn = mysqli_connect($servername, $username, '', $database);
-	// Check connection
+    include('conexiongen.php');
 	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
@@ -32,8 +27,18 @@
         } else {
         
         
-		//Sentencia sql
-		$sqli="INSERT INTO lugaresbaq VALUES('$name.$direccion', '$name', '$empresa' , '$desc', '$direccion' , '$tel' , 0,  '$nombre', '$maps')";
+//Sentencia sql
+		$sqli="INSERT INTO lugaresbaq
+        (ID_lugar,
+        nombre,
+        empresa,
+        descripcion,
+        direccion,
+        tel,
+        puntaje,
+        foto,
+        maps)
+        VALUES ('$name.$direccion', '$name', '$empresa' , '$desc', '$direccion' , '$tel' , 0,  '$nombre', '$maps')";
 		//ejecutar sentencia
 		$ejecutar=mysqli_query($conn, $sqli);
 		//verificar ejecucion
@@ -44,24 +49,27 @@
 		}
         
         
+        
         //añadir los datos a la tabla de categorias
         
-        $amigos=$_POST['amigos'];
-        $familia=$_POST['familia'];
-        $pareja=$_POST['pareja'];
-        $noche=$_POST['noche'];
-        $deporte=$_POST['deporte'];
-		$ejercicio=$_POST['ejercicio'];
-        $cultura=$_POST['cultura'];
-        $aprende=$_POST['aprende'];
-        $hijos=$_POST['hijos'];
-        $solo=$_POST['solo'];
-		$espiritual=$_POST['espiritual'];
-        $relajarse=$_POST['relajarse'];
-        $cdinero=$_POST['cdinero'];
-        $sdinero=$_POST['sdinero'];
-        
-        $sqli="INSERT INTO categorias VALUES('$name.$direccion', '$name', '$amigos', '$familia', '$pareja' , '$noche' , '$deporte', '$ejercicio', '$cultura', '$aprende', '$hijos', '$solo', '$espiritual', '$relajarse', '$cdinero', '$sdinero')";
+  $sqli="INSERT INTO categorias
+        (ID_lugar,
+        nombre,
+        amigos,
+        familia,
+        pareja,
+        noche,
+        deporte,
+        ejercicio,
+        cultura,
+        aprende,
+        hijos,
+        solo,
+        espiritual,
+        relajarse,
+        conDinero,
+        sinDinero)
+        VALUES('$name.$direccion', '$name', '$amigos', '$familia', '$pareja' , '$noche' , '$deporte', '$ejercicio', '$cultura', '$aprende', '$hijos', '$solo', '$espiritual', '$relajarse', '$cdinero', '$sdinero')";
 		//ejecutar sentencia
 		$ejecutar=mysqli_query($conn, $sqli);
 		//verificar ejecucion
@@ -71,6 +79,7 @@
 			echo "<br><a href='admin.php?usuario=admin'>Volver a página de administrador</a>";
 		}
         }
+        
         
 	mysqli_close($conn);
 }

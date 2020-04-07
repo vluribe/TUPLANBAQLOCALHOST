@@ -12,10 +12,6 @@ include('conexiongen.php');
     ?>
 
 <?php
-              $host_db="localhost";
-              $user_db="root";
-              $pass_db="";
-              $bd_name="visitar";
               $tabla="comentarios";
 ?>
 <!DOCTYPE html>

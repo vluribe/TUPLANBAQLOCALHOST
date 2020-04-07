@@ -9,13 +9,15 @@ include('conexiongen.php');
    <?php
 
   function accion($usuario, $lugar){
-
-	// Check connection                                                                                                                                    
+     	        
 	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 	} else {
-        $sqli="INSERT INTO favoritos VALUES('$usuario','$lugar')";
+        $sqli="INSERT INTO favoritos
+        (id_usuario,
+        id_lugar)
+        VALUES('$usuario','$lugar')";
 		//ejecutar sentencia
 		$ejecutar=mysqli_query($conn, $sqli);
 		//verificar ejecucion
@@ -279,7 +281,7 @@ include('conexiongen.php');
                 //echo '<form action="lugares.php?usuario='.$usuario.'" method="post">';
                 echo '<table align="justify" width=100% cellspacing=2 cellpadding=0 id="data_table" border=4>';
 				echo '<tr>';
-				echo '<td width=60%><img src="../tuplanbaq/'.$row["foto"].'"/></td>';
+				echo '<td width=60%><img src="'.$row["foto"].'"/></td>';
                 echo '<td align="center"><h2><strong>'.$row["nombre"].' </strong></h2>  <br/>
                           '.$row["descripcion"].'
                           <br/> <br/>

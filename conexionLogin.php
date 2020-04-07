@@ -1,13 +1,8 @@
 <?php
 	$result = 0;
     $msj = "";
-	$servername = "localhost";
-	$database = "visitar";
-	$username = "root";
-	// Create connection
-	$conn = mysqli_connect($servername, $username, '', $database);
-	// Check connection
-	
+    include('conexiongen.php');
+
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 	} else {
@@ -41,8 +36,9 @@
                 }
         
         
-	mysqli_close($conn);
+		mysqli_close($conn);
+        echo trim($msj);
 }
-	echo $msj;
+
 
 ?>

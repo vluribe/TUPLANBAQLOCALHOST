@@ -1,8 +1,6 @@
 <?php
 	
-
 include('conexiongen.php');
-	// Check connection
 	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
@@ -16,8 +14,12 @@ include('conexiongen.php');
               echo 'ya';
             $resultado->close();
         }else{
+
                 //Sentencia sql
-                $sqli="INSERT INTO favoritos VALUES('$usuario', '$lugar')";
+                $sqli="INSERT INTO favoritos
+                (id_usuario,
+                id_lugar)
+                VALUES ('$usuario', '$lugar')";
                 //ejecutar sentencia
                 $ejecutar=mysqli_query($conn, $sqli);
                 //verificar ejecucion

@@ -1,10 +1,5 @@
 <?php
-	$repetido='no';
-	$servername = "localhost";
-	$database = "visitar";
-	$username = "root";
-	// Create connection
-	$conn = mysqli_connect($servername, $username, '', $database);
+	include('conexiongen.php');
 	// Check connection
 	
 	if (!$conn) {
@@ -35,7 +30,13 @@
                 echo "<br><a href='Signup.php'>Volver a página de registro</a>";
             } else {
             //Sentencia sql
-            $sqli="INSERT INTO usuarios VALUES('$id', '$user', '$password' , '$age', '$nombre')";
+            $sqli="INSERT INTO usuarios
+            (id_usuario,
+            user,
+            password,
+            age,
+            foto)
+            VALUES('$id', '$user', '$password' , '$age', '$nombre')";
             //ejecutar sentencia
             $ejecutar=mysqli_query($conn, $sqli);
             //verificar ejecucion
@@ -58,17 +59,47 @@
             $espiritual=$_POST['espiritual'];
             $relajarse=$_POST['relajarse'];
 
-            $sqli="INSERT INTO preferencias VALUES('$id', '$user', '$amigos' , '$familia', '$pareja' , '$noche' , '$deporte', '$ejercicio', '$cultura', '$aprende', '$hijos', '$solo', '$espiritual', '$relajarse')";
+            $sqli="INSERT INTO preferencias 
+            (id_usuario,
+            user,
+            amigos,
+            familia,
+            pareja,
+            noche,
+            deporte,
+            ejercicio,
+            cultura,
+            aprende,
+            hijos,
+            solo,
+            espiritual,
+            relajarse)
+            VALUES('$id', '$user', '$amigos' , '$familia', '$pareja' , '$noche' , '$deporte', '$ejercicio', '$cultura', '$aprende', '$hijos', '$solo', '$espiritual', '$relajarse')";
             //ejecutar sentencia
             $ejecutar=mysqli_query($conn, $sqli);
 
             if(!$ejecutar){
-                echo "hubo un error creando la cuenta";
-            } else {
-                echo "Datos guardados correctamente<br><a href='index.php'>Volver a página de inicio</a>";
-            }
+                ?>
+               
+                <script language="JavaScript">
+			
+			//mensaje
+			alert("Ocurrió un error!");
+			window.location.href='singup.php';
+		</script>
+        
+		 <?php
+            } else { 
+                ?>
+                 <script language="JavaScript">
+                alert("Listo!");
+                window.location.href='index.php';
+		       </script> 
+                <?php 
+                   }
         }
         }
+        
         
 	mysqli_close($conn);
 }
