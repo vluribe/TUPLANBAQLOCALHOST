@@ -8,6 +8,7 @@ if(isset($_GET['lugar'])){
         $lugar = "";
         $usuario="";
     }
+include('conexiongen.php');
     ?>
 
 <?php
@@ -81,7 +82,7 @@ if(isset($_GET['lugar'])){
 <!-- carousel -->
 <section> 
 <?php 
-$conn = mysqli_connect($host_db, $user_db, '', $bd_name);
+
 if (!$conn) {
 die("Connection failed: " . mysqli_connect_error());
 } else {
@@ -110,7 +111,6 @@ if($resultado->num_rows >0){ ?>
         <div class="carousel-item active">
             <img class="d-block w-100" src=
                                                 <?php
-                                                $conn = mysqli_connect($host_db, $user_db, '', $bd_name);
                                                 if (!$conn) {
                                                 die("Connection failed: " . mysqli_connect_error());
                                                 } else {
@@ -125,13 +125,11 @@ if($resultado->num_rows >0){ ?>
                                                 }
                                                 
                                                 }
-                                                mysqli_close($conn);
                                                 ?>
             alt="First slide">
         </div>
         <div class="carousel-item">
             <img class="d-block w-100" src= <?php
-                                                $conn = mysqli_connect($host_db, $user_db, '', $bd_name);
                                                 if (!$conn) {
                                                 die("Connection failed: " . mysqli_connect_error());
                                                 } else {
@@ -146,14 +144,12 @@ if($resultado->num_rows >0){ ?>
                                                 }
                                                 
                                                 }
-                                                mysqli_close($conn);
                                                 ?> 
                                                 alt="Second slide">
         </div>
         <div class="carousel-item">
             <img class="d-block w-100" src=
                                                 <?php
-                                                $conn = mysqli_connect($host_db, $user_db, '', $bd_name);
                                                 if (!$conn) {
                                                 die("Connection failed: " . mysqli_connect_error());
                                                 } else {
@@ -168,7 +164,6 @@ if($resultado->num_rows >0){ ?>
                                                 }
                                                 
                                                 }
-                                                mysqli_close($conn);
                                                 ?>
             alt="Third slide">
         </div>
@@ -204,7 +199,6 @@ if($resultado->num_rows >0){ ?>
 	}
 	$resultado->close();
 	echo '</tr></table>';
-	mysqli_close($conn);
 }
 
 }
@@ -218,7 +212,6 @@ if($resultado->num_rows >0){ ?>
 
 <?php
 	// Create connection
-	$conn = mysqli_connect($host_db, $user_db, '', $bd_name);
 	// Check connection
 	
 	if (!$conn) {
@@ -247,7 +240,7 @@ if($resultado->num_rows >0){ ?>
 	$resultado->close();
         
     }
-	mysqli_close($conn);
+	
 ?>
     
 </section>
@@ -260,11 +253,10 @@ if($resultado->num_rows >0){ ?>
            <h4 class= "text-white mb-4">
             <?php
             
-              $conexion=new mysqli($host_db, $user_db, $pass_db, $bd_name);
-              if ($conexion -> connect_error) {
-                die("La conexion fallo". $conexion -> connect_error);
+              if ($conn -> connect_error) {
+                die("La conexion fallo". $conn -> connect_error);
               }
-              $resultado=$conexion -> query("SELECT u.user, c.comentario FROM comentarios c join lugaresbaq l on c.ID_lugar = l.ID_lugar, usuarios u where l.nombre = '$lugar' and u.id_usuario = c.idUsuario");
+              $resultado=$conn -> query("SELECT u.user, c.comentario FROM comentarios c join lugaresbaq l on c.ID_lugar = l.ID_lugar, usuarios u where l.nombre = '$lugar' and u.id_usuario = c.idUsuario");
               while ($fila=mysqli_fetch_row($resultado)) {
                 echo "<b>Usuario: </b>".$fila[0];
                 echo "<br>";
@@ -272,7 +264,8 @@ if($resultado->num_rows >0){ ?>
                 echo "<br>";
                 echo "<br>";
               }
-            ?>
+            mysqli_close($conn); 
+               ?>
             <form action=<?php echo '"Procesar_Mensaje.php?lugar='.urlencode($lugar).';'.$usuario.'"';?>  method="POST">
               <input type="hidden" name="usuarios" value = <?php echo '"'.$usuario.='"' ?>>
               <h3>Escribe tu mensaje</h3>

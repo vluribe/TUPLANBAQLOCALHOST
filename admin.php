@@ -4,6 +4,7 @@ if(isset($_GET['usuario'])){
 }else{
     $usuario = "";
 }
+include('conexiongen.php');
 ?>
 
 <!DOCTYPE html>
@@ -175,13 +176,6 @@ if(isset($_GET['usuario'])){
     
 <?php  
 //obtencion de datos de la tabla
-
-	$servername = "localhost";
-	$database = "visitar";
-	$username = "root";
-	// Create connection
-	$conn = mysqli_connect($servername, $username, '', $database);
-	// Check connection
 	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
