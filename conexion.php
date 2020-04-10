@@ -11,12 +11,11 @@
         $direccion=$_POST['direccion'];
 		$tel=$_POST['tel'];
         $maps=$_POST['maps'];
-        $nombre=$_FILES['foto']['name'];
+		$nombre=$_FILES['foto']['name'];
         $nombre=str_replace(' ', '', $nombre);
         
         copy($_FILES['foto']['tmp_name'], $nombre);
 		echo "El archivo se grabo correctamente. <br />";
-		
 		echo "Archivo guardado ".$nombre;
         
         $sql="SELECT nombre FROM lugaresbaq WHERE nombre='$name'";
@@ -30,7 +29,7 @@
         } else {
         
         
-//Sentencia sql
+		//Sentencia sql
 		$sqli="INSERT INTO lugaresbaq
         (ID_lugar,
         nombre,
@@ -52,10 +51,24 @@
 		}
         
         
-        
         //añadir los datos a la tabla de categorias
         
-  $sqli="INSERT INTO categorias
+        $amigos=$_POST['amigos'];
+        $familia=$_POST['familia'];
+        $pareja=$_POST['pareja'];
+        $noche=$_POST['noche'];
+        $deporte=$_POST['deporte'];
+		$ejercicio=$_POST['ejercicio'];
+        $cultura=$_POST['cultura'];
+        $aprende=$_POST['aprende'];
+        $hijos=$_POST['hijos'];
+        $solo=$_POST['solo'];
+		$espiritual=$_POST['espiritual'];
+        $relajarse=$_POST['relajarse'];
+        $cdinero=$_POST['cdinero'];
+        $sdinero=$_POST['sdinero'];
+        
+        $sqli="INSERT INTO categorias
         (ID_lugar,
         nombre,
         amigos,
@@ -82,7 +95,6 @@
 			echo "<br><a href='admin.php?usuario=admin'>Volver a página de administrador</a>";
 		}
         }
-        
         
 	mysqli_close($conn);
 }

@@ -2,11 +2,11 @@
 	$result = 0;
     $msj = "";
     include('conexiongen.php');
-
+	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 	} else {
-		//echo "Connected successfully";
+	//echo "Connected successfully";
 		$email=$_POST['email'];
         $password=$_POST['password'];
         //Sentencia sql
@@ -36,9 +36,9 @@
                 }
         
         
-		mysqli_close($conn);
+	mysqli_close($conn);
         echo trim($msj);
 }
-
+	
 
 ?>

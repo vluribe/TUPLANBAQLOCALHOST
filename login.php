@@ -92,9 +92,9 @@ $(document).ready(function(){
     //emai = dato post
 $("#login").click(function(){
     $.post('conexionLogin.php', {email:$("#email").val(), password:$("#pwd").val()}, function(datos){
-        if (datos != 'error'){
+        if (datos.trim() != 'error'){
             alert("El usuario devuelto "+datos);
-            window.location.href = "index.php?usuario="+datos;
+            window.location.href = "index.php?usuario="+datos.trim();
         } else {
             alert(datos);
         }

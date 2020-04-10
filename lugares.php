@@ -14,7 +14,6 @@ include('conexiongen.php');
               echo 'ya';
             $resultado->close();
         }else{
-
                 //Sentencia sql
                 $sqli="INSERT INTO favoritos
                 (id_usuario,
@@ -33,5 +32,6 @@ include('conexiongen.php');
             }
         
         }
+mysqli_close($conn);
         
     ?>

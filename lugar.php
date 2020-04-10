@@ -11,9 +11,6 @@ if(isset($_GET['lugar'])){
 include('conexiongen.php');
     ?>
 
-<?php
-              $tabla="comentarios";
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +75,6 @@ include('conexiongen.php');
 <!-- carousel -->
 <section> 
 <?php 
-
 if (!$conn) {
 die("Connection failed: " . mysqli_connect_error());
 } else {
@@ -115,12 +111,13 @@ if($resultado->num_rows >0){ ?>
                                                 $resultado= $conn->query($sql);
                                                 if($resultado->num_rows >0){
                                                     while($row = $resultado->fetch_assoc()){
-                                                        echo '"'. $row["foto"] .='"';
+                                                        echo '"'. $row["foto"] .'"';
                                                     
                                                     }
                                                 }
                                                 
                                                 }
+                                            
                                                 ?>
             alt="First slide">
         </div>
@@ -134,7 +131,7 @@ if($resultado->num_rows >0){ ?>
                                                 $resultado= $conn->query($sql);
                                                 if($resultado->num_rows >0){
                                                     while($row = $resultado->fetch_assoc()){
-                                                        echo '"'. $row["foto2"] .='"';
+                                                        echo '"'. $row["foto2"] .'"';
                                                     
                                                     }
                                                 }
@@ -154,12 +151,13 @@ if($resultado->num_rows >0){ ?>
                                                 $resultado= $conn->query($sql);
                                                 if($resultado->num_rows >0){
                                                     while($row = $resultado->fetch_assoc()){
-                                                        echo '"'. $row["foto3"] .='"';
+                                                        echo '"'. $row["foto3"] .'"';
                                                     
                                                     }
                                                 }
                                                 
                                                 }
+                                        
                                                 ?>
             alt="Third slide">
         </div>
@@ -190,11 +188,12 @@ if($resultado->num_rows >0){ ?>
 
 	if($resultado->num_rows >0){
 			while($row = $resultado->fetch_assoc()){
-                echo '<center><img src="../tuplanbaq/'.$row["foto"].'"/></center>';
+                echo '<center><img src="'.$row["foto"].'"/></center>';
 			}
 	}
 	$resultado->close();
 	echo '</tr></table>';
+	
 }
 
 }
@@ -223,12 +222,12 @@ if($resultado->num_rows >0){ ?>
                 echo '<br/><br/>';
                 echo '<table align="center"  width=70% cellspacing=2 cellpadding=0 id="data_table" border=4   >';
 				echo '<tr>';
-				echo '<td> Teléfono: '.$row["tel"].'
+				echo '<td style="color:white;"> Teléfono: '.$row["tel"].'
                 <br> Dirección: '.$row["direccion"].' <br> Propietarios: '.$row["empresa"].'</td>';
-                echo '<td align="center"> <br/>'.$row["descripcion"].'<br/> <br/></td>';
+                echo '<td align="center" style="color:white;"> <br/>'.$row["descripcion"].'<br/> <br/></td>';
                 echo '</tr>';
                 echo '</table>';
-                echo '<h1 class="mx-auto my-0 text-uppercase text-center">Ubicación</h1>';
+                echo '<br><br><h1 class="mx-auto my-0 text-uppercase text-center" style="color:white;">Ubicación</h1>';
                 echo '<center>'.$row["maps"].'</center>';
                 
 			}
@@ -245,39 +244,52 @@ if($resultado->num_rows >0){ ?>
   <section id="Comments" class="about-section">
     <div class="container">
         <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4 text-center">Comentarios</h2>
-           <h4 class= "text-white mb-4">
+          <h1 class="mx-auto my-0 text-uppercase text-center" style="color:white;">Comentarios</h1>;
+          
             <?php
-            
               if ($conn -> connect_error) {
                 die("La conexion fallo". $conn -> connect_error);
-              }
+              } else {
               $resultado=$conn -> query("SELECT u.user, c.comentario FROM comentarios c join lugaresbaq l on c.ID_lugar = l.ID_lugar, usuarios u where l.nombre = '$lugar' and u.id_usuario = c.idUsuario");
               while ($fila=mysqli_fetch_row($resultado)) {
-                echo "<b>Usuario: </b>".$fila[0];
+                echo '<table style=" border-collapse:separate;
+    border:solid white 1px;
+    border-radius:6px;
+    -moz-border-radius:6px;" width=100% cellspacing=2 cellpadding=0 id="data_table" border=4   >';
+				echo '<tr style=" border-left:solid white 1px;
+    border-top:solid black 1px;">';
+                echo '<td  style=" border-left:solid white 1px;
+    border-top:solid white 1px;">';
+                echo '<h5  style="padding: 10px;" class= "text-white mb-4">';
+                echo "<b>".$fila[0]."</b> dijo:";
                 echo "<br>";
-                echo "<b>Comentario: </b>".$fila[1];
-                echo "<br>";
-                echo "<br>";
+                echo "".$fila[1];
+                echo '</h5>';
+                echo '</td>';
+                echo '</tr>';
+                echo '</table>';
               }
-            mysqli_close($conn); 
-               ?>
+              }
+               mysqli_close($conn);
+            ?>
             <form action=<?php echo '"Procesar_Mensaje.php?lugar='.urlencode($lugar).';'.$usuario.'"';?>  method="POST">
               <input type="hidden" name="usuarios" value = <?php echo '"'.$usuario.='"' ?>>
-              <h3>Escribe tu mensaje</h3>
-              <textarea rows="10" cols="50" name="comentario" required></textarea>
-              <br>
-              <br>
-              <input type="hidden" name="lugar" value = <?php echo '"'.$lugar.='"' ?> >
-              <input type="submit" value="Enviar Comentario" >
+                
+                <br><br>
+              <textarea style="border-radius:6px;"   placeholder='Escribe tu comentario aqui...' rows="5" cols="86" name="comentario" required></textarea>
+              <input type="hidden"  name="lugar" value = <?php echo '"'.$lugar.='"' ?> >
+                <button type="submit" class="btn btn-primary mx-auto">Enviar</button>
             </form>
-          <p class="text-white-50"></p>
-          </h4>
         </div>
       </div>
   </section>
 
     </section>
+    <footer class="bg-black small text-center text-white-50">
+    <div class="container">
+      Copyright &copy; Tu plan A 2019
+    </div>
+  </footer>
     
     </body>
 </html>

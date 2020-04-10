@@ -4,11 +4,14 @@ if(isset($_GET['usuario'])){
 }else{
     $usuario = "";
 }
+header('Content-type: text/html; charset=utf-8');
 include('conexiongen.php');
+
 ?>
 
 <!DOCTYPE html>
 <html>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <head>
 <meta content="text/html; charset=utf-8"/>
@@ -21,6 +24,7 @@ include('conexiongen.php');
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">  
         
     <title>MI PERFIL</title>
+        
 </head>
     
     <body>
@@ -42,12 +46,12 @@ include('conexiongen.php');
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" style="background-color: black;" href="index.php?usuario=<?php echo $usuario;?>">Inicio</a>
-                                  
+            <a class="nav-link js-scroll-trigger" style="background-color: black; color: white;font-weight: bold;" href="index.php?usuario=<?php echo $usuario;?>">Inicio</a>
+            </li>                     
              <?php 
           if($usuario == "admin"){ ?>
             <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="admin.php?usuario=admin" style="background-color: blue;" >Administrar lugares</a>
+            <a class="nav-link js-scroll-trigger" href="admin.php?usuario=admin" style="background-color: blue;color: white;font-weight: bold;" >Administrar lugares</a>
           </li>
             <?php
             }
@@ -55,7 +59,7 @@ include('conexiongen.php');
             <?php 
           if($usuario != ""){ ?>
             <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.php">Log Out</a>
+            <a style="background-color: red; color: white;font-weight: bold;" class="nav-link js-scroll-trigger" href="index.php">Log Out</a>
           </li>
             <?php
             }
@@ -73,9 +77,6 @@ include('conexiongen.php');
         <center>
      <img src=<?php  
     //obtencion de datos de la tabla
-
-
-	// Check connection
 	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
@@ -92,16 +93,14 @@ include('conexiongen.php');
          $resultado->close();
         }
         
-
-  
+          
           ?> 
                
           name="aboutme" width="140" height="140" border="0" class="img-circle">
                     <h3 class="media-heading"><?php echo $usuario ?></h3>
              </center>   
         <?php
-            // Check connection
-
+        	//include('/conexiongen.php');
             if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
             } else {
@@ -136,10 +135,11 @@ include('conexiongen.php');
              
                     <center>
                     <p class="text-left"><strong>Bio: </strong><br>
-                        Aun no a√±ades una descripcion, hazlo ahora</p>
+                        Aun no aÒades una descripcion, hazlo ahora</p>
                     <br>
                 </center>
-            </center>    
+              
+    
             
                         
     </div>
@@ -185,7 +185,7 @@ include('conexiongen.php');
                 echo '<td align="center"><h2><strong>'.$row["nombre"].' </strong></h2>  <br/>
                           '.$row["descripcion"].'
                           <br/> <br/>
-                          <a href="lugar.php?lugar='.urlencode($row["nombre"]).'">Ver m√°s</a>
+                          <a href="lugar.php?lugar='.urlencode($row["nombre"]).';'.$usuario.'">Ver m·s</a>
                           <br/>';
                 echo '<input type="hidden" id="selusuario" value="'.$usuario.'" /> ';
                        echo '<i class="fas fa-heart"></i>
@@ -205,7 +205,6 @@ include('conexiongen.php');
 
 	mysqli_close($conn);
 
-?>
-
+    ?>
     </body>
 </html>

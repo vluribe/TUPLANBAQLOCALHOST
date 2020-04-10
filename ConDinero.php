@@ -9,11 +9,12 @@ include('conexiongen.php');
    <?php
 
   function accion($usuario, $lugar){
-
+    
+	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 	} else {
-        $sqli="INSERT INTO favoritos VALUES('$usuario','$lugar')";
+        $sqli="INSERT INTO `colegioe_tuplanbaq`.`favoritos` (`id_usuario`,`id_lugar`) VALUES ('$usuario','$lugar')";
 		//ejecutar sentencia
 		$ejecutar=mysqli_query($conn, $sqli);
 		//verificar ejecucion
@@ -122,12 +123,12 @@ include('conexiongen.php');
     
       <link href="css/creative.min.css" rel="stylesheet">
     
-  <section id="portfolio">
+   <section id="portfolio">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+          <a class="portfolio-box" href="img/portfolio/thumbnails/add1.png">
+            <img class="img-fluid" src="img/portfolio/thumbnails/add1.png" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
                 Lugar 
@@ -139,8 +140,8 @@ include('conexiongen.php');
           </a>
         </div>
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+          <a class="portfolio-box" href="img/portfolio/thumbnails/add1.png">
+            <img class="img-fluid" src="img/portfolio/thumbnails/add1.png" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
                 Lugar
@@ -152,8 +153,8 @@ include('conexiongen.php');
           </a>
         </div>
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+          <a class="portfolio-box" href="img/portfolio/thumbnails/add3.png">
+            <img class="img-fluid" src="img/portfolio/thumbnails/add3.png" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
                 Lugar
@@ -165,8 +166,8 @@ include('conexiongen.php');
           </a>
         </div>
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
+        <a class="portfolio-box" href="img/portfolio/thumbnails/add1.png">
+            <img class="img-fluid" src="img/portfolio/thumbnails/add1.png" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
                 Lugar
@@ -178,8 +179,8 @@ include('conexiongen.php');
           </a>
         </div>
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
+         <a class="portfolio-box" href="img/portfolio/thumbnails/add3.png">
+            <img class="img-fluid" src="img/portfolio/thumbnails/add3.png" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
                 Lugar
@@ -191,8 +192,8 @@ include('conexiongen.php');
           </a>
         </div>
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+         <a class="portfolio-box" href="img/portfolio/thumbnails/add1.png">
+            <img class="img-fluid" src="img/portfolio/thumbnails/add1.png" alt="">
             <div class="portfolio-box-caption p-3">
               <div class="project-category text-white-50">
                 Lugar
@@ -206,6 +207,7 @@ include('conexiongen.php');
       </div>
     </div>
         </section>
+    
     
  <link href="css/creative.css" rel="stylesheet">
    
@@ -229,7 +231,7 @@ include('conexiongen.php');
         <!-- Portfolio Section -->  
   <section id="categoria" class="title">
     <div class="categorias">
-        <form action="condinero.php?usuario=<?php echo $usuario;?>#categoria" method="post">
+        <form action="ConDinero.php?usuario=<?php echo $usuario;?>#categoria" method="post">
           <h2>¿Qué tipo de plan tienes para hoy?</h2>
         <select name="tipo" required style="border: 2px solid red; border-radius: 5px;">
                     <option disabled="disabled" selected="selected">Escoja una opción </option>
@@ -255,7 +257,7 @@ include('conexiongen.php');
     
   <?php  
 //obtencion de datos de la tabla
-
+	                                                                                                                     
 	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());

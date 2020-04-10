@@ -176,6 +176,8 @@ include('conexiongen.php');
     
 <?php  
 //obtencion de datos de la tabla
+
+	// Check connection
 	
 	if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
@@ -195,7 +197,7 @@ include('conexiongen.php');
                 echo '<td><input type="text" name="tel" value="'.$row["tel"].'" readonly /></td>';
                 echo '<td><input type="text" name="empresa" value="'.$row["empresa"].'" readonly /></td>';
 				echo '<td><input type="text" name="foto" value="'.$row["foto"].'" readonly /></td>';
-				echo '<td><a href="http://localhost/tuplanbaq/'.$row["foto"].'">Descargar</a></td>';
+				echo '<td><a href="'.$row["foto"].'">Descargar</a></td>';
 			    echo '</tr>';
 			}
 	}
@@ -203,7 +205,6 @@ include('conexiongen.php');
 	echo '</tr></table>';
 	}
 
-	mysqli_close($conn);
 
 ?>
       </div>
@@ -212,7 +213,7 @@ include('conexiongen.php');
 
  <footer class="bg-black small text-center text-white-50">
     <div class="container">
-      Copyright &copy; Your Website 2019
+      Copyright &copy; SISEdigital 2019
     </div>
   </footer>
 

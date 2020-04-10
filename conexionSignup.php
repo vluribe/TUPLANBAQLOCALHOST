@@ -15,7 +15,6 @@
         
         copy($_FILES['foto']['tmp_name'], $nombre);
 		echo "El archivo se grabo correctamente. <br />";
-        
 		echo "Archivo guardado ".$nombre;
         
         $sql="SELECT id_usuario FROM usuarios WHERE id_usuario='$id'";
@@ -102,7 +101,6 @@
                    }
         }
         }
-        
         
 	mysqli_close($conn);
 }
